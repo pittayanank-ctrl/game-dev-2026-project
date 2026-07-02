@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ผลงาน Computer Game Development 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#0F1123;
+    --bg-panel:#181B36;
+    --bg-panel-2:#1F2347;
+    --accent-cyan:#5EEAD4;
+    --accent-pink:#F76FB0;
+    --accent-amber:#FFD166;
+    --text-primary:#F5F6FF;
+    --text-muted:#8A8FB8;
+    --locked:#3E4166;
+    --locked-text:#5C6089;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(94,234,212,0.08), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(247,111,176,0.08), transparent 45%),
+      var(--bg-deep);
+    color:var(--text-primary);
+    font-family:'Space Grotesk', sans-serif;
+    padding:0 0 80px;
+    min-height:100vh;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    text-align:center;
+    padding:64px 20px 40px;
+    position:relative;
+  }
+
+  .eyebrow{
+    font-family:'Press Start 2P', monospace;
+    font-size:10px;
+    letter-spacing:2px;
+    color:var(--accent-amber);
+    display:inline-block;
+    padding:8px 16px;
+    border:2px solid var(--accent-amber);
+    border-radius:6px;
+    background:rgba(255,209,102,0.08);
+    margin-bottom:24px;
+  }
+
+  h1{
+    font-family:'Press Start 2P', monospace;
+    font-size:clamp(18px, 4vw, 30px);
+    line-height:1.7;
+    margin:0 0 12px;
+    color:var(--text-primary);
+    text-shadow: 3px 3px 0 rgba(94,234,212,0.35);
+  }
+
+  .subtitle{
+    color:var(--text-muted);
+    font-size:16px;
+    max-width:520px;
+    margin:0 auto;
+  }
+
+  /* progress bar */
+  .progress-wrap{
+    max-width:420px;
+    margin:36px auto 0;
+    text-align:left;
+  }
+  .progress-label{
+    font-size:13px;
+    color:var(--text-muted);
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .progress-label span:last-child{ color:var(--accent-cyan); font-weight:600; }
+  .progress-track{
+    height:12px;
+    background:var(--bg-panel-2);
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #2A2E58;
+  }
+  .progress-fill{
+    height:100%;
+    width:33.3%;
+    background:linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
+    border-radius:8px;
+  }
+
+  /* ---------- MAP / TIMELINE ---------- */
+  .map{
+    max-width:760px;
+    margin:60px auto 0;
+    padding:0 24px;
+    position:relative;
+  }
+
+  .map::before{
+    content:'';
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:2px;
+    background-image: linear-gradient(var(--locked), var(--locked) 60%, transparent 0%);
+    background-size: 2px 16px;
+    background-repeat: repeat-y;
+    transform:translateX(-50%);
+  }
+
+  .node{
+    position:relative;
+    display:flex;
+    align-items:flex-start;
+    gap:24px;
+    margin-bottom:44px;
+  }
+
+  .node:nth-child(even){
+    flex-direction:row-reverse;
+  }
+
+  .badge{
+    flex:0 0 auto;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Press Start 2P', monospace;
+    font-size:14px;
+    z-index:2;
+    position:relative;
+  }
+
+  .node.unlocked .badge{
+    background:radial-gradient(circle at 30% 30%, var(--accent-cyan), #1a8f7f);
+    color:#0F1123;
+    box-shadow: 0 0 0 4px rgba(94,234,212,0.15), 0 0 24px rgba(94,234,212,0.5);
+  }
+
+  .node.locked .badge{
+    background:var(--bg-panel-2);
+    color:var(--locked-text);
+    border:2px dashed var(--locked);
+  }
+
+  .card{
+    flex:1;
+    background:var(--bg-panel);
+    border:1px solid #2A2E58;
+    border-radius:14px;
+    padding:20px 22px;
+    position:relative;
+  }
+
+  .node.unlocked .card{
+    border-color:rgba(94,234,212,0.35);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  .node.locked .card{
+    opacity:0.6;
+  }
+
+  .card h2{
+    margin:0 0 4px;
+    font-size:18px;
+    color:var(--text-primary);
+  }
+
+  .status-tag{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:1px;
+    font-weight:600;
+    padding:3px 9px;
+    border-radius:20px;
+    margin-bottom:10px;
+  }
+
+  .node.unlocked .status-tag{
+    background:rgba(94,234,212,0.15);
+    color:var(--accent-cyan);
+  }
+
+  .node.locked .status-tag{
+    background:rgba(140,144,184,0.12);
+    color:var(--locked-text);
+  }
+
+  .card p.desc{
+    margin:0 0 14px;
+    color:var(--text-muted);
+    font-size:14px;
+  }
+
+  .links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:13px;
+    padding:9px 16px;
+    border-radius:8px;
+    background:var(--accent-pink);
+    color:#1a0d16;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(247,111,176,0.35);
+  }
+
+  .btn::before{ content:'▶'; font-size:10px; }
+
+  .locked-msg{
+    font-size:13px;
+    color:var(--locked-text);
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  @media (max-width: 640px){
+    .map::before{ left:27px; }
+    .node, .node:nth-child(even){
+      flex-direction:row;
+    }
+    .badge{ width:44px; height:44px; font-size:12px; }
+  }
+
+  footer{
+    text-align:center;
+    margin-top:60px;
+    color:var(--locked-text);
+    font-size:12px;
+    letter-spacing:1px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <span class="eyebrow">LEVEL SELECT</span>
+    <h1>Computer Game<br>Development 2026</h1>
+    <p class="subtitle">นายพิทยนันท์ กัญญะลา 673380525-8 Sec.AI1</p>
+
+    <div class="progress-wrap">
+      <div class="progress-label"><span>ความคืบหน้า</span><span>2 / 6 ด่าน</span></div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+  </div>
+
+  <div class="map">
+
+    <div class="node unlocked">
+      <div class="badge">01</div>
+      <div class="card">
+        <span class="status-tag">ปลดล็อกแล้ว</span>
+        <h2>แนะนำตัวเอง</h2>
+        <p class="desc">หน้าแนะนำตัวเบื้องต้นของผู้เรียน</p>
+        <div class="links">
+          <a class="btn" href="lab1.html">lab1.html</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="node unlocked">
+      <div class="badge">02</div>
+      <div class="card">
+        <span class="status-tag">ปลดล็อกแล้ว</span>
+        <h2>My First 2D Game</h2>
+        <p class="desc">เกม 2D แรก แบ่งเป็นสองภารกิจย่อย</p>
+        <div class="links">
+          <a class="btn" href="game21/game21.html">ภารกิจ 1</a>
+          <a class="btn" href="game22/game22.html">ภารกิจ 2</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="node locked">
+      <div class="badge">03</div>
+      <div class="card">
+        <span class="status-tag">รอเปิดใช้งาน</span>
+        <h2>lab3</h2>
+        <p class="desc">รายละเอียดผลงาน lab3</p>
+        <div class="locked-msg">🔒 กำลังพัฒนา — เร็ว ๆ นี้</div>
+      </div>
+    </div>
+
+    <div class="node locked">
+      <div class="badge">04</div>
+      <div class="card">
+        <span class="status-tag">รอเปิดใช้งาน</span>
+        <h2>lab4</h2>
+        <p class="desc">รายละเอียดผลงาน lab4</p>
+        <div class="locked-msg">🔒 กำลังพัฒนา — เร็ว ๆ นี้</div>
+      </div>
+    </div>
+
+    <div class="node locked">
+      <div class="badge">05</div>
+      <div class="card">
+        <span class="status-tag">รอเปิดใช้งาน</span>
+        <h2>lab5</h2>
+        <p class="desc">รายละเอียดผลงาน lab5</p>
+        <div class="locked-msg">🔒 กำลังพัฒนา — เร็ว ๆ นี้</div>
+      </div>
+    </div>
+
+    <div class="node locked">
+      <div class="badge">06</div>
+      <div class="card">
+        <span class="status-tag">รอเปิดใช้งาน</span>
+        <h2>lab6</h2>
+        <p class="desc">รายละเอียดผลงาน lab6</p>
+        <div class="locked-msg">🔒 กำลังพัฒนา — เร็ว ๆ นี้</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>— END OF MAP —</footer>
+
+</body>
+</html>
