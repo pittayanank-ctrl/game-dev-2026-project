@@ -4,9 +4,19 @@ This starter kit provides all the essential mechanics needed to build a complete
 
 ## Preview
 
-<img src="docs/qrcode.png" style="width:300px;" />
+a. เพิ่ม คำอธิบายโครงการ ระบุ รหัส ชื่อสกุล
 
-- [Game Preview](https://twachi.github.io/2D-Platformer-Starter-Kit/)
+673380525-8 นายพิทยนันท์ กัญญะลา
+
+<img src="Lab4\demo1.jpg" width="300">
+<img src="Lab4\demo2.jpg" width="300">
+
+b.เพิ่ม Link ดู Clip Demo VDO  
+https://drive.google.com/file/d/1IcjCArx1nNqWqpAE0w_lNRb4k1AVwrLm/view?usp=sharing
+
+c.เพิ่ม Link Play Game ไปที่  Githup Page URL
+
+https://pittayanank-ctrl.github.io/game-dev-2026-project/Lab4/Game4.html
 
 
 ## Features
