@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://do5jco8cc7y5p"]
+
+[ext_resource type="PackedScene" path="res://scenes/motorcycle.tscn" id="1_bike"]
+[ext_resource type="Script" uid="uid://lns0dphesis1" path="res://scripts/city.gd" id="2_city"]
+[ext_resource type="Script" uid="uid://dwvx0mvkhxfnl" path="res://scripts/delivery_manager.gd" id="3_delivery"]
+[ext_resource type="Script" uid="uid://cnjc0cki146al" path="res://scripts/hud.gd" id="4_hud"]
+[ext_resource type="Script" path="res://scripts/camera_rig.gd" id="5_cam"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="6_pause"]
+[ext_resource type="Script" path="res://scripts/traffic_lights.gd" id="7_lights"]
+[ext_resource type="Script" path="res://scripts/traffic_manager.gd" id="8_traffic"]
+[ext_resource type="Script" path="res://scripts/pedestrians.gd" id="9_peds"]
+[ext_resource type="Script" path="res://scripts/world_clock.gd" id="10_clock"]
+[ext_resource type="Script" path="res://scripts/day_summary.gd" id="11_summary"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="12_tutorial"]
+[ext_resource type="Script" path="res://scripts/fuel_system.gd" id="13_fuel"]
+[ext_resource type="Script" path="res://scripts/effects.gd" id="14_fx"]
+[ext_resource type="Script" path="res://scripts/cutscene.gd" id="15_cut"]
+[ext_resource type="Script" path="res://scripts/story.gd" id="16_story"]
+[ext_resource type="Script" path="res://scripts/game_audio.gd" id="17_audio"]
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 1
+background_color = Color(0.53, 0.75, 0.95, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+
+[node name="Main" type="Node3D" unique_id=851641376]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=827519080]
+environment = SubResource("Environment_1")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=643394154]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0.7, 0, -0.7, 0.7, 0, 10, 0)
+shadow_enabled = true
+
+[node name="City" type="Node3D" parent="." unique_id=1106138924]
+script = ExtResource("2_city")
+
+[node name="Motorcycle" parent="." unique_id=56882701 instance=ExtResource("1_bike")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 14, 0.6, 26)
+
+[node name="DeliveryManager" type="Node3D" parent="." unique_id=995127657]
+script = ExtResource("3_delivery")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1749807933]
+script = ExtResource("4_hud")
+
+[node name="CameraRig" type="Node3D" parent="."]
+script = ExtResource("5_cam")
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+script = ExtResource("6_pause")
+
+[node name="TrafficLights" type="Node3D" parent="."]
+script = ExtResource("7_lights")
+
+[node name="TrafficManager" type="Node3D" parent="."]
+script = ExtResource("8_traffic")
+
+[node name="Pedestrians" type="Node3D" parent="."]
+script = ExtResource("9_peds")
+
+[node name="WorldClock" type="Node" parent="."]
+script = ExtResource("10_clock")
+
+[node name="DaySummary" type="CanvasLayer" parent="."]
+script = ExtResource("11_summary")
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+script = ExtResource("12_tutorial")
+
+[node name="FuelSystem" type="Node" parent="."]
+script = ExtResource("13_fuel")
+
+[node name="Effects" type="Node3D" parent="."]
+script = ExtResource("14_fx")
+
+[node name="Cutscene" type="CanvasLayer" parent="."]
+script = ExtResource("15_cut")
+
+[node name="Story" type="Node" parent="."]
+script = ExtResource("16_story")
+
+[node name="GameAudio" type="Node" parent="."]
+script = ExtResource("17_audio")

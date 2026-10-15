@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bwotyoaedj3sn"]
+
+[ext_resource type="PackedScene" uid="uid://dyotafl0pdkrk" path="res://assets/models/motorcycles/pcx.fbx" id="1_model"]
+[ext_resource type="Script" uid="uid://cygic0b0d6g1d" path="res://scripts/motorcycle.gd" id="2_script"]
+[ext_resource type="PackedScene" uid="uid://c5np1doxbd67b" path="res://assets/models/characters/Cartoon-Anime-4HeadBase.fbx" id="3_char"]
+[ext_resource type="Script" uid="uid://8t88gdl7dtvt" path="res://scripts/rider.gd" id="4_rider"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(0.6, 1, 2)
+
+[node name="Motorcycle" type="CharacterBody3D" unique_id=765277189]
+script = ExtResource("2_script")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=388277394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_1")
+
+[node name="Model" parent="." unique_id=1868881820 instance=ExtResource("1_model")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.373, 0)
+
+[node name="Rider" type="Node3D" parent="." unique_id=1936228386]
+script = ExtResource("4_rider")
+model_scene = ExtResource("3_char")
